@@ -1,0 +1,55 @@
+.logo
+{
+    position: absolute;
+    width: 278px;
+    height: 115px;
+    left: 440px;
+    top: 237px;
+    
+   
+
+}
+
+.input{
+    position: absolute;
+width: 709px;
+height: 46px;
+left: 209px;
+top: 426px;
+
+background: #FFFFFF;
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 8px;
+}
+.button{
+    position: absolute;
+    width: 138px;
+    height: 46px;
+    left: 934px;
+    top: 426px;
+    
+    background: #204080;
+    border-radius: 8px;
+}
+.searchF{
+    font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 21px;
+
+color: #FFFFFF;
+}
+.list{
+    position: absolute;
+width: 709px;
+height: 258px;
+left: 209px;
+top: 490px;
+
+background: #FFFFFF;
+border: 1px solid #484848;
+box-sizing: border-box;
+border-radius: 4px;
+}
