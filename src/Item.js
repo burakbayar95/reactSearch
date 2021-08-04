@@ -1,12 +1,43 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Item extends Component {
-    render() {
+const Item =(props)=> {
+    
         return (
             <div>
-                {this.props.item}
-                <hr></hr>
+
+
+                
+                <table>
+                        <tbody>
+                        <tr>
+                        <td>
+
+                        <div style={{fontSize:"18px",fontWeight:"bold",fontFamily:"Roboto",color:"#484848"}}>
+                {props.startpoint} - {props.endpoint}
+                </div>
+                <div style={{fontSize:"12px",fontWeight:"normal",fontFamily:"Roboto",color:"#686868"}}>
+                {props.name} - {props.date} 
+
+                </div>
+
+
+                        </td>
+                        <td>
+                            <div style={{fontSize:"18px",fontWeight:"bold",fontFamily:"Roboto",color:"#484848",marginLeft:"50px"}}>
+                            {props.mail}
+                            </div>
+                             </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        <hr></hr>
             </div>
+           
+
+
+
+
         )
-    }
+    
 }
+export default Item

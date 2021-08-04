@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Item from './Item'
 
-export default class Cols extends Component {
-    render() {
+const Cols = (props)=>{
+    
         return (
             <ul>
-                {this.props.items.map((item)=>(
+                {props.items.map((item)=>(
                     
-                    <Item key={item} item={item}/>
+                    <Item key={item} name={item[0]} mail={item[2]} startpoint={item[4]} endpoint={item[5]} date={item[3].substr(-4)}  />
                 ))}
                
 
@@ -15,5 +15,6 @@ export default class Cols extends Component {
 
             </ul>
         )
-    }
+    
 }
+export default Cols

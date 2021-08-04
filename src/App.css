@@ -53,3 +53,13 @@ border: 1px solid #484848;
 box-sizing: border-box;
 border-radius: 4px;
 }
+.hr{
+    position: absolute;
+width: 644px;
+height: 0px;
+left: 239px;
+top: 552.42px;
+
+border: 1px solid #585858;
+transform: matrix(1, 0, 0, 1, 0, 0);
+}

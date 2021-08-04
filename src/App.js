@@ -1,63 +1,136 @@
-import React, { Component } from 'react'
+import { useState, useEffect  } from 'react'
 import Cols from './Cols';
 import "./App.css"
 
-export default class App extends Component {
+function App() {
 
-  constructor(props) {
-    super(props);
+ const[data,setData]=useState([]);
+ const [choosen, setChosen] = useState([]);
+  const [search, setSearch] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    this.state = {
-     items:[],
-     
-     
-    };
-  }
 
-  componentDidMount()
+
+  useEffect(() => {
+    getData();
+  }, []);
+  
+
+  function getData() 
   {
     
     fetch("../mockData.json")
     .then((res)=>res.json())
     .then((data)=>{
      console.log(data.data.length)
-      this.setState({items:data.data})
+      setData(data.data)
     });
 
   }
 
-   clickSearch =()=>{
-     for (let i = 0; i < this.state.items.length; i++) {
-       console.log(this.state.items[i])
-       
-     }
+  const searchChangeHandler = (e) => {
+    setDropdownOpen(true);
+    setSearch(e.target.value);
+  };
  
-   console.log("adasd")
+  const dropdownClickHandler = (item) => {
+    setDropdownOpen(false);
+    setChosen([...choosen, item]);
+  };
 
 
-  }
+  
 
 
 
-  render() {
+ 
     return (
 
       
       <div>
+         
+        
+
+
+
+
         <img className="logo" src="../logo.png" alt="tesodev logo"></img>
-        <input className="input" type="text"></input>
-        <button onClick={this.clickSearch} className="button"><div className="searchF">Search</div></button>
+        <form>
+        <input className="input" 
+         value={search}
+         onChange={(e) => searchChangeHandler(e)}
+        type="text"></input>
+        </form>
+        <button  type="submit" className="button"><div className="searchF">Search</div></button>
         
         <div className="list">
 
           
-        <Cols items={this.state.items}/>
+        {search === "" || !dropdownOpen ? "" : (
+         <div>
+            {data.filter((item) =>
+                  item[0].toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  item[5].toLowerCase().includes(search.toLowerCase())
+              )
+              .map((item, index) => (
+
+
+                <div key={index}
+
+                
+                  onClick={() => dropdownClickHandler(item)}>
+
+<table>
+                        <tbody>
+                        <tr>
+                        <td>
+
+                        <div style={{fontSize:"18px",fontWeight:"bold",fontFamily:"Roboto",color:"#484848"}}>
+                {item[4]} - {item[5]}
+                </div>
+                <div style={{fontSize:"12px",fontWeight:"normal",fontFamily:"Roboto",color:"#686868"}}>
+                {item[0]} - {item[3]} 
+
+                </div>
+
+
+                        </td>
+                        <td>
+                            <div style={{fontSize:"18px",fontWeight:"bold",fontFamily:"Roboto",color:"#484848",marginLeft:"50px"}}>
+                            {item[2]}
+                            </div>
+                             </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        <hr></hr>
+                
+                </div>
+
+
+              )).slice(0, 5)}
+          </div>
+        )}
+          
+
+
+
+
+
+
+
+
+
+        
                     </div>
         
+                
+
                  
         </div>
      
     )
   }
-}
 
+export default App;
