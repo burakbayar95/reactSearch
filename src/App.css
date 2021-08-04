@@ -4,7 +4,7 @@
     width: 278px;
     height: 115px;
     left: 440px;
-    top: 237px;
+    top: 50px;
     
    
 
@@ -15,7 +15,7 @@
 width: 709px;
 height: 46px;
 left: 209px;
-top: 426px;
+top: 250px;
 
 background: #FFFFFF;
 border: 1px solid #000000;
@@ -27,7 +27,7 @@ border-radius: 8px;
     width: 138px;
     height: 46px;
     left: 934px;
-    top: 426px;
+    top: 250px;
     
     background: #204080;
     border-radius: 8px;
@@ -46,20 +46,10 @@ color: #FFFFFF;
 width: 709px;
 height: 258px;
 left: 209px;
-top: 490px;
+top: 320px;
 
 background: #FFFFFF;
 border: 1px solid #484848;
 box-sizing: border-box;
 border-radius: 4px;
-}
-.hr{
-    position: absolute;
-width: 644px;
-height: 0px;
-left: 239px;
-top: 552.42px;
-
-border: 1px solid #585858;
-transform: matrix(1, 0, 0, 1, 0, 0);
 }
