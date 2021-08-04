@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import Cols from "./Cols";
 import "./App.css";
-import Detail from "./Detail";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+const Detail=()=> {
   const [data, setData] = useState([]);
   const [choosen, setChosen] = useState([]);
+  const [count, setCount] = useState([]);
   const [search, setSearch] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -23,6 +23,22 @@ function App() {
       });
   }
 
+
+  const listedasc=()=>{
+     setData(e=>e.sort())
+    setCount(count+1)
+    //data.sort()
+  }
+  const listeddesc=()=>{
+    setData(e=>e.sort().reverse())
+   setCount(count+1)
+   //data.sort()
+ }
+ const ascyear=()=>{
+     setData(e=>e[3].sort())
+     setCount(count+1)
+ }
+
   const searchChangeHandler = (e) => {
     setDropdownOpen(true);
     setSearch(e.target.value);
@@ -34,23 +50,21 @@ function App() {
   };
 
   return (
-    <Router>
-      <Route exact path="/">
     <div>
-      <img className="logo" src="../logo.png" alt="tesodev logo"></img>
+      <img className="logodetail" src="../logo.png" alt="tesodev logo"></img>
       <form>
         <input
-          className="input"
+          className="inputdetail"
           value={search}
           onChange={(e) => searchChangeHandler(e)}
           type="text"
         ></input>
       </form>
-      <button type="submit" className="button">
-        <div className="searchF">Search</div>
+      <button type="submit" className="buttondetail">
+        <div className="searchFdetail">Search</div>
       </button>
 
-      <div className="list">
+      <div className="listdetail">
         {search === "" || !dropdownOpen ? (
           ""
         ) : (
@@ -58,7 +72,7 @@ function App() {
             {data
               .filter(
                 (item) =>
-                  item[0].toLowerCase().includes(search.toLowerCase()) ||
+                 // item[0].toLowerCase().includes(search.toLowerCase())   ||
                   item[5].toLowerCase().includes(search.toLowerCase()) ||
                   item[4].toLowerCase().includes(search.toLowerCase())
               )
@@ -111,31 +125,26 @@ function App() {
                   <hr></hr>
                 </div>
               ))
-              .slice(0, 3)}
-               <a href="/detail" style={{
-                 textAlign:"center",
-                 display:"block",
-                 marginTop:"18px",
-
-                              fontSize: "18px",
-                              fontWeight: "bold",
-                              fontFamily: "Roboto",
-                              alignItems:"center",
-                              color: "#000000",
-                            }}>Show more..</a>
+              .slice(0, 6)}
+               
           </div>
           
         )}
       
       </div>
-      
+     
+      <div class="dropdown orderby">
+  <button class="dropbtn">Order By</button>
+  <div class="dropdown-content">
+    <a onClick={listedasc}>Name ascending</a>
+    <a onClick={listeddesc}>Name descending</a>
+    <a onClick={ascyear}>Year ascending</a>
+    <a href="#">Year descending</a>
+  </div>
+</div>
     </div>
-    </Route>
-
-    <Route path="/detail" component={Detail}/>
-    </Router>
   );
- 
+  
 }
 
-export default App;
+export default Detail;
