@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Cols from "./Cols";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Detail from "./Detail";
 
@@ -38,6 +37,7 @@ function App() {
       <Route exact path="/home">
         <div>
           <img className="logo" src="../logo.png" alt="tesodev logo"></img>
+          <div className="logoText">Search web app</div>
           <form>
             <input
               className="input"

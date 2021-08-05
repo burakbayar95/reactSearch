@@ -3,6 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import App from "./App";
+import Pagination from "./Pagination";
 
 const Detail = () => {
   const [data, setData] = useState([]);
@@ -11,6 +12,8 @@ const Detail = () => {
   const [search, setSearch] = useState("");
   const [filtered, setfiltered] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [currentPage, setcurrentPage] = useState(1);
+  const [postPerPage] = useState(6);
 
   useEffect(() => {
     getData();
@@ -22,19 +25,22 @@ const Detail = () => {
       .then((data) => {
         console.log(data.data.length);
         setData(data.data);
+        
       });
   }
 
+ 
+
+  const paginate=(pageNumber)=>setcurrentPage(pageNumber)
   const listbutton = () => {
     setfiltered(
       data
         .filter(
           (item) =>
-            // item[0].toLowerCase().includes(search.toLowerCase())   ||
             item[5].toLowerCase().includes(search.toLowerCase()) ||
             item[4].toLowerCase().includes(search.toLowerCase())
         )
-        .slice(0, 6)
+        
     );
   };
 
@@ -43,11 +49,10 @@ const Detail = () => {
       data
         .filter(
           (item) =>
-            // item[0].toLowerCase().includes(search.toLowerCase())   ||
             item[5].toLowerCase().includes(search.toLowerCase()) ||
             item[4].toLowerCase().includes(search.toLowerCase())
         )
-        .slice(0, 6)
+        
         .sort()
     );
   };
@@ -56,11 +61,10 @@ const Detail = () => {
       data
         .filter(
           (item) =>
-            // item[0].toLowerCase().includes(search.toLowerCase())   ||
             item[5].toLowerCase().includes(search.toLowerCase()) ||
             item[4].toLowerCase().includes(search.toLowerCase())
         )
-        .slice(0, 6)
+       
         .sort()
         .reverse()
     );
@@ -73,7 +77,7 @@ const Detail = () => {
             item[5].toLowerCase().includes(search.toLowerCase()) ||
             item[4].toLowerCase().includes(search.toLowerCase())
         )
-        .slice(0, 6)
+        
         .sort((a, b) => (a[3].substr(-4) > b[3].substr(-4) ? 1 : -1))
     );
     setCount(count + 1);
@@ -87,7 +91,7 @@ const Detail = () => {
             item[5].toLowerCase().includes(search.toLowerCase()) ||
             item[4].toLowerCase().includes(search.toLowerCase())
         )
-        .slice(0, 6)
+        
         .sort((a, b) => (a[3].substr(-4) > b[3].substr(-4) ? 1 : -1))
         .reverse()
     );
@@ -103,7 +107,9 @@ const Detail = () => {
     setDropdownOpen(false);
     setChosen([...choosen, item]);
   };
-
+  const indexOfLastPost=currentPage * postPerPage;
+  const indexOfFirstPost=indexOfLastPost-postPerPage;
+  const currentPost=filtered.slice(indexOfFirstPost,indexOfLastPost)
   return (
     <Router>
       <Route exact path="/detail">
@@ -128,8 +134,9 @@ const Detail = () => {
           </button>
 
           <div className="listdetail">
+            
             <div>
-              {filtered.map((item, index) => (
+              {currentPost.map((item, index) => (
                 <div key={index} onClick={() => dropdownClickHandler(item)}>
                   <table>
                     <tbody>
@@ -173,8 +180,11 @@ const Detail = () => {
                     </tbody>
                   </table>
                   <hr></hr>
+
                 </div>
               ))}
+                                <Pagination postPerPage={postPerPage} currentPage={currentPage} totalPosts={filtered.length} paginate={paginate}  />
+
             </div>
           </div>
 
@@ -195,6 +205,7 @@ const Detail = () => {
               </a>
             </div>
           </div>
+          
         </div>
       </Route>
       <Route path="/home" component={App} />
