@@ -35,7 +35,7 @@ function App() {
 
   return (
     <Router>
-      <Route exact path="/">
+      <Route exact path="/home">
     <div>
       <img className="logo" src="../logo.png" alt="tesodev logo"></img>
       <form>
@@ -92,11 +92,13 @@ function App() {
                         <td>
                           <div
                             style={{
-                              fontSize: "18px",
+                              position:"absolute",
+                              fontSize: "16px",
                               fontWeight: "bold",
                               fontFamily: "Roboto",
                               color: "#484848",
-                              marginLeft: "50px",
+                              marginLeft:"50px",
+                              right:"35px"
                             }}
                           >
                             {item[2]}
@@ -117,12 +119,12 @@ function App() {
                  display:"block",
                  marginTop:"18px",
 
-                              fontSize: "18px",
+                              fontSize: "16px",
                               fontWeight: "bold",
                               fontFamily: "Roboto",
                               alignItems:"center",
                               color: "#000000",
-                            }}>Show more..</a>
+                            }}>Show more...</a>
           </div>
           
         )}
