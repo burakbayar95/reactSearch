@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./App.css";
 import Detail from "./Detail";
 
@@ -8,9 +11,13 @@ function App() {
   const [choosen, setChosen] = useState([]);
   const [search, setSearch] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  
+  //let history = useHistory();
   useEffect(() => {
+    
+    //history.push('/home');
     getData();
+    
   }, []);
 
   function getData() {
@@ -34,7 +41,8 @@ function App() {
 
   return (
     <Router>
-      <Route exact path="/home">
+      <Route exact path="/">
+      
         <div>
           <img className="logo" src="../logo.png" alt="tesodev logo"></img>
           <div className="logoText">Search web app</div>

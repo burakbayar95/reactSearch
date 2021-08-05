@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import App from "./App";
 import Pagination from "./Pagination";
 
@@ -114,7 +114,7 @@ const Detail = () => {
     <Router>
       <Route exact path="/detail">
         <div>
-          <a href="/home">
+          <a href="../">
             <img
               className="logodetail"
               src="../logo.png"
@@ -183,7 +183,7 @@ const Detail = () => {
 
                 </div>
               ))}
-                                <Pagination postPerPage={postPerPage} currentPage={currentPage} totalPosts={filtered.length} paginate={paginate}  />
+      <Pagination postPerPage={postPerPage} currentPage={currentPage} totalPosts={filtered.length} paginate={paginate}  />
 
             </div>
           </div>
@@ -208,7 +208,7 @@ const Detail = () => {
           
         </div>
       </Route>
-      <Route path="/home" component={App} />
+      <Route path="../" component={App} />
     </Router>
   );
 };
