@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import App from "./App";
 import Pagination from "./Pagination";
 
@@ -117,7 +117,7 @@ const Detail = () => {
           <a href="../">
             <img
               className="logodetail"
-              src="../logo.png"
+              src="./128png.png"
               alt="tesodev logo"
             ></img>
           </a>

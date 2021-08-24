@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Detail from "./Detail";
 
@@ -12,18 +9,18 @@ function App() {
   const [search, setSearch] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   
-  //let history = useHistory();
+
   useEffect(() => {
     
-    //history.push('/home');
     getData();
     
-  }, []);
+  },[]);
 
   function getData() {
     fetch("../mockData.json")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data.data);
         console.log(data.data.length);
         setData(data.data);
       });
@@ -44,7 +41,7 @@ function App() {
       <Route exact path="/">
       
         <div>
-          <img className="logo" src="../logo.png" alt="tesodev logo"></img>
+          <img className="logo" src="./128png.png" alt=""></img>
           <div className="logoText">Search web app</div>
           <form>
             <input
